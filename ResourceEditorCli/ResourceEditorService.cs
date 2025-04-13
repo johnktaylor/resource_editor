@@ -23,7 +23,7 @@ public class ResourceEditorService : IResourceEditorService
         return Parser.Default.ParseArguments<
                 CreateDbOptions, InfoDbOptions, SetDbOptions,
                 AddResourceOptions, DeleteResourceByNameOptions, DeleteResourceByIdOptions, 
-                ListResourceOptions, GetResourceByIdOptions>(args)
+                ListResourceOptions, GetResourceByIdOptions, VacuumOptions>(args)
             .MapResult(
                 (CreateDbOptions opts) => CreateDb(opts),
                 (InfoDbOptions opts) => InfoDb(opts),
@@ -33,6 +33,7 @@ public class ResourceEditorService : IResourceEditorService
                 (DeleteResourceByIdOptions opts) => DeleteResourceById(opts),
                 (ListResourceOptions opts) => ListResource(opts),
                 (GetResourceByIdOptions opts) => GetResourceById(opts),
+                (VacuumOptions opts) => Vacuum(opts),
                 errs => 1
             );
     }
@@ -53,6 +54,13 @@ public class ResourceEditorService : IResourceEditorService
 
     }
 
+    private int Vacuum(VacuumOptions opts)
+    {
+        var command = new VacuumCommand();
+        var result = command.ExecuteCommand(Context, opts);
+        PrintResultIfNeeded(result);
+        return result.ExitCode;
+    }
     private int DeleteResourceById(DeleteResourceByIdOptions opts)
     {
         var command = new DeleteResourceByIdCommand();
