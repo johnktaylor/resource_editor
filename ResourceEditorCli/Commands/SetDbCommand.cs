@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using ResourceEditorCli.Commands.Interfaces;
 using ResourceEditorCli.Options;
 using ResourceEditorCli.Options.Interfaces;
 using ResourceEditorLib.Database;
@@ -8,7 +7,7 @@ namespace ResourceEditorCli.Commands;
 
 public class SetDbCommand : ResourceEditorCommand
 {
-    public ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
+    public override ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
     {
         var filePath = "appsettings.json";
         var opts = options as SetDbOptions;

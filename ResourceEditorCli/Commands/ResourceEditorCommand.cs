@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
 using ResourceEditorCli.Options.Interfaces;
+using ResourceEditorLib.Database;
 
 namespace ResourceEditorCli.Commands;
 
 public abstract class ResourceEditorCommand
 {
-    protected string? GetSetDb()
+    public abstract ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options);
+    protected virtual string? GetSetDb()
     {
         var filePath = "appsettings.json";
         

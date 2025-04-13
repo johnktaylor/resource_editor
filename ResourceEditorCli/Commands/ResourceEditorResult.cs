@@ -1,6 +1,4 @@
-﻿using ResourceEditorCli.Commands.Interfaces;
-
-namespace ResourceEditorCli.Commands;
+﻿namespace ResourceEditorCli.Commands;
 
 public class ResourceEditorResult
 {

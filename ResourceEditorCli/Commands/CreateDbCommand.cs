@@ -1,5 +1,4 @@
-﻿using ResourceEditorCli.Commands.Interfaces;
-using ResourceEditorCli.Options;
+﻿using ResourceEditorCli.Options;
 using ResourceEditorCli.Options.Interfaces;
 using ResourceEditorLib.Database;
 using ResourceEditorLib.Database.Entities;
@@ -8,7 +7,7 @@ namespace ResourceEditorCli.Commands;
 
 public class CreateDbCommand : ResourceEditorCommand
 {
-    public ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
+    public override ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
     {
         var opts = options as CreateDbOptions;
         

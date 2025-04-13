@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using ResourceEditorCli.Commands.Interfaces;
 using ResourceEditorCli.Options;
 using ResourceEditorCli.Options.Interfaces;
 using ResourceEditorLib.Database;
@@ -9,7 +8,7 @@ namespace ResourceEditorCli.Commands;
 
 public class InfoDbCommand : ResourceEditorCommand
 {
-    public ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
+    public override ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
     {
         var opts = options as InfoDbOptions;
         if (opts == null)

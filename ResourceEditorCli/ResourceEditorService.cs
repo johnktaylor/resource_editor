@@ -9,7 +9,7 @@ namespace ResourceEditorCli;
 
 public class ResourceEditorService : IResourceEditorService
 {
-    public ResourceDbContext Context { get; set; }
+    private ResourceDbContext Context { get; set; }
 
     public ResourceEditorService(IResourceDbContext dbContext)
     {
@@ -22,25 +22,29 @@ public class ResourceEditorService : IResourceEditorService
 
         return Parser.Default.ParseArguments<
                 CreateDbOptions, InfoDbOptions, SetDbOptions,
-                AddResourceOptions, DeleteResourceByNameOptions>(args)
+                AddResourceOptions, DeleteResourceByNameOptions, DeleteResourceByIdOptions, 
+                ListResourceOptions, GetResourceByIdOptions>(args)
             .MapResult(
                 (CreateDbOptions opts) => CreateDb(opts),
                 (InfoDbOptions opts) => InfoDb(opts),
                 (SetDbOptions opts) => SetDb(opts),
                 (AddResourceOptions opts) => AddResource(opts),
                 (DeleteResourceByNameOptions opts) => DeleteResourceByName(opts),
+                (DeleteResourceByIdOptions opts) => DeleteResourceById(opts),
+                (ListResourceOptions opts) => ListResource(opts),
+                (GetResourceByIdOptions opts) => GetResourceById(opts),
                 errs => 1
             );
     }
 
-    public void PrintHeader()
+    private static void PrintHeader()
     {
         Console.WriteLine("Resource Editor");
         Console.WriteLine("---------------");
         //Console.WriteLine($"Current Set DB: {GetSetDb()}");
     }
 
-    private void PrintResultIfNeeded(ResourceEditorResult result)
+    private static void PrintResultIfNeeded(ResourceEditorResult result)
     {
         if (!string.IsNullOrEmpty(result.ResultMessage))
         {
@@ -49,6 +53,30 @@ public class ResourceEditorService : IResourceEditorService
 
     }
 
+    private int DeleteResourceById(DeleteResourceByIdOptions opts)
+    {
+        var command = new DeleteResourceByIdCommand();
+        var result = command.ExecuteCommand(Context, opts);
+        PrintResultIfNeeded(result);
+        return result.ExitCode;
+    }
+    
+    private int GetResourceById(GetResourceByIdOptions opts)
+    {
+        var command = new GetResourceByIdCommand();
+        var result = command.ExecuteCommand(Context, opts);
+        PrintResultIfNeeded(result);
+        return result.ExitCode;
+    }
+    
+    private int ListResource(ListResourceOptions opts)
+    {
+        var command = new ListResourceCommand();
+        var result = command.ExecuteCommand(Context, opts);
+        PrintResultIfNeeded(result);
+        return result.ExitCode;
+    }
+    
     private int DeleteResourceByName(DeleteResourceByNameOptions opts)
     {
         var command = new DeleteResourceByNameCommand();
