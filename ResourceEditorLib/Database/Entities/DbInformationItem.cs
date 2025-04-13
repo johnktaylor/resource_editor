@@ -6,8 +6,7 @@ namespace ResourceEditorLib.Database.Entities;
 public class DbInformationItem
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string? Name { get; set; }
     public string? Value { get; set; }
     public int Ordinal { get; set; }
