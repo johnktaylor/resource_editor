@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceEditorCli", "Resour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceEditorLib", "ResourceEditorLib\ResourceEditorLib.csproj", "{850A7D34-8CCE-4FE2-A3AC-B3512468B7FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceEditorGui", "ResourceEditorGui\ResourceEditorGui.csproj", "{D10E22E5-379E-4CD6-8BE1-10DFC7096F2F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{850A7D34-8CCE-4FE2-A3AC-B3512468B7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{850A7D34-8CCE-4FE2-A3AC-B3512468B7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{850A7D34-8CCE-4FE2-A3AC-B3512468B7FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D10E22E5-379E-4CD6-8BE1-10DFC7096F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D10E22E5-379E-4CD6-8BE1-10DFC7096F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D10E22E5-379E-4CD6-8BE1-10DFC7096F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D10E22E5-379E-4CD6-8BE1-10DFC7096F2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
