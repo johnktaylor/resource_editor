@@ -10,7 +10,6 @@ public class CreateDbCommand : ResourceEditorCommand
     public override ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
     {
         var opts = options as CreateDbOptions;
-        
         if (opts == null)
         {
             return new ResourceEditorResult()

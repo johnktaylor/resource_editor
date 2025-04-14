@@ -17,4 +17,7 @@ public class DeleteResourceByNameOptions : IResourceEditorOptions
     
     [Option('n', "name", Required=true, HelpText="Specify resource name")]
     public string? ResourceName { get; set; }
+
+    [Option('v', "shrink", Required = false, HelpText="Shrink the database after deleting resource")]
+    public bool Shrink { get; set; }
 }

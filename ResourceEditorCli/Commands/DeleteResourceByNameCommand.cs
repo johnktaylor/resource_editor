@@ -1,4 +1,5 @@
-﻿using ResourceEditorCli.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using ResourceEditorCli.Options;
 using ResourceEditorCli.Options.Interfaces;
 using ResourceEditorLib.Database;
 using ResourceEditorLib.Database.Entities;
@@ -99,6 +100,11 @@ public class DeleteResourceByNameCommand : ResourceEditorCommand
             context.Set<ResourceHeader>().Remove(resourceheader);
         }
         context.SaveChanges();
+
+        if (opts.Shrink)
+        {
+            context.Database.ExecuteSql($"VACUUM");
+        }
 
         return new ResourceEditorResult()
         {

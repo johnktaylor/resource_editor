@@ -9,7 +9,6 @@ public class SetDbCommand : ResourceEditorCommand
     public override ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
     {
         var opts = options as SetDbOptions;
-        
         if (opts == null)
         {
             return new ResourceEditorResult()
