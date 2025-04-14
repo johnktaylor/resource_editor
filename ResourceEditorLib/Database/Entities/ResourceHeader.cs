@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace ResourceEditorLib.Database.Entities;
 
+[Index(nameof(ResourceNamespace), nameof(ResourceName), IsUnique = true)]
 public class ResourceHeader
 {
     [Key]

@@ -60,7 +60,7 @@ public class ListResourceCommand : ResourceEditorCommand
         StringBuilder sb = new StringBuilder();
         foreach (var resourceHeader in resourceHeaders)
         {
-            sb.AppendLine($"{resourceHeader.Id}: {resourceHeader.ResourceType}: {resourceHeader.ResourceName}: {resourceHeader.FileName}");
+            sb.AppendLine($"{resourceHeader.Id}: {resourceHeader.ResourceType}: {resourceHeader.ResourceNamespace}: {resourceHeader.ResourceName}: {resourceHeader.FileName}");
         }
 
         return new ResourceEditorResult()
