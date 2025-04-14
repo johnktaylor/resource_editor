@@ -80,7 +80,9 @@ ResourceEditorCli <verb> [options]
     *   Deletes a specific resource from the currently set database by its unique ID.
     *   **Options:**
         *   `-i`, `--id <guid>`: (Required) The unique GUID identifier of the resource to delete.
+        *   `-v`, `--shrink`: (Optional) Shrink the database file after deleting the resource.
     *   Example: `ResourceEditorCli deleteresourcebyid -i "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
+    *   Example (with shrink): `ResourceEditorCli deleteresourcebyid -i "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -v`
 
 *   **`deleteresourcebyname [options]`**
     *   Deletes a specific resource from the currently set database by its type, namespace, and name.
@@ -90,7 +92,9 @@ ResourceEditorCli <verb> [options]
         *   `-t`, `--text`: Specify text resource type.
         *   `-s`, `--namespace <namespace>`: (Optional) The namespace of the resource (default: "root").
         *   `-n`, `--name <name>`: (Required) The name of the resource.
+        *   `-v`, `--shrink`: (Optional) Shrink the database file after deleting the resource.
     *   Example: `ResourceEditorCli deleteresourcebyname -b -s images -n old_logo`
+    *   Example (with shrink): `ResourceEditorCli deleteresourcebyname -t -s config -n user_settings -v`
 
 *   **`shrink`**
     *   Performs a VACUUM operation on the currently set SQLite database to potentially reduce its file size.
@@ -126,4 +130,12 @@ ResourceEditorCli <verb> [options]
 5.  **Delete the settings file by name:**
     ```bash
     ResourceEditorCli deleteresourcebyname -t -s config -n user_settings
+    ```
+
+6.  **Delete an image by ID and shrink the database:**
+    ```bash
+    # First, list to find the ID
+    ResourceEditorCli listresources -b -s assets/images -n main_icon
+    # (Copy the ID from the output)
+    ResourceEditorCli deleteresourcebyid -i "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -v
     ```
