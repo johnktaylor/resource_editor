@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-using ResourceEditorCli.Options;
+﻿using ResourceEditorCli.Options;
 using ResourceEditorCli.Options.Interfaces;
 using ResourceEditorLib.Database;
 using ResourceEditorLib.Database.Entities;

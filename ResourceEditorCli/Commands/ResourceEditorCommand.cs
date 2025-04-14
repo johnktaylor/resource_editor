@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using ResourceEditorCli.Options.Interfaces;
+﻿using ResourceEditorCli.Options.Interfaces;
 using ResourceEditorLib.Database;
 
 namespace ResourceEditorCli.Commands;
