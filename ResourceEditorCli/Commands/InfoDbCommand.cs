@@ -20,7 +20,7 @@ public class InfoDbCommand : ResourceEditorCommand
             };
         }
         
-        var dbPath = opts.Path ?? GetSetDb();
+        var dbPath = opts.Path ?? ResourceEditorConfiguration.GetSetDb().ResultMessage;
         if (dbPath == null)
         {
             return new ResourceEditorResult()

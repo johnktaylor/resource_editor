@@ -8,7 +8,7 @@ public class VacuumCommand :ResourceEditorCommand
 {
     public override ResourceEditorResult ExecuteCommand(ResourceDbContext context, IResourceEditorOptions options)
     {
-        var setDb = GetSetDb();
+        var setDb = ResourceEditorConfiguration.GetSetDb().ResultMessage;
         if (setDb == null)
         {
             var results = new ResourceEditorResult()

@@ -29,7 +29,7 @@ public class ListResourceCommand : ResourceEditorCommand
             };
         }
         
-        var setDb = GetSetDb();
+        var setDb = ResourceEditorConfiguration.GetSetDb().ResultMessage;
         if (setDb == null)
         {
             var results = new ResourceEditorResult()
@@ -43,7 +43,6 @@ public class ListResourceCommand : ResourceEditorCommand
         context.DbFilePath = setDb;
         
         var resourceHeaders = new List<ResourceHeader>();
-
         if (opts.TextFlag)
         {
             resourceHeaders = context.Set<ResourceHeader>().Where(r=>r.ResourceType == "Text").ToList();
@@ -55,6 +54,16 @@ public class ListResourceCommand : ResourceEditorCommand
         else if (opts.AllFlag)
         {
             resourceHeaders = context.Set<ResourceHeader>().ToList();
+        }
+
+        if (opts.Namespace != null)
+        {
+            resourceHeaders = resourceHeaders.Where(r => r.ResourceNamespace == opts.Namespace).ToList();
+        }
+        
+        if (opts.Name != null)
+        {
+            resourceHeaders = resourceHeaders.Where(r => r.ResourceName == opts.Name).ToList();
         }
 
         StringBuilder sb = new StringBuilder();

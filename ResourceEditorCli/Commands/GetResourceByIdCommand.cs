@@ -20,7 +20,7 @@ public class GetResourceByIdCommand : ResourceEditorCommand
             };
         }
         
-        var setDb = GetSetDb();
+        var setDb = ResourceEditorConfiguration.GetSetDb().ResultMessage;
         if (setDb == null)
         {
             var result = new ResourceEditorResult()

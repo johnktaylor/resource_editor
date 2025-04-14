@@ -1,7 +1,5 @@
 ﻿using ResourceEditorLib.Database;
 using CommandLine;
-using ResourceEditorLib.Database.Entities;
-using Newtonsoft.Json.Linq;
 using ResourceEditorCli.Commands;
 using ResourceEditorCli.Options;
 
@@ -42,7 +40,8 @@ public class ResourceEditorService : IResourceEditorService
     {
         Console.WriteLine("Resource Editor");
         Console.WriteLine("---------------");
-        //Console.WriteLine($"Current Set DB: {GetSetDb()}");
+        Console.WriteLine($"Current Set DB: {ResourceEditorConfiguration.GetSetDb().ResultMessage}");
+        Console.WriteLine("---------------");
     }
 
     private static void PrintResultIfNeeded(ResourceEditorResult result)

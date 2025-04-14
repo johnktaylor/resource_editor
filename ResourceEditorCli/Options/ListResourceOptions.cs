@@ -14,4 +14,10 @@ public class ListResourceOptions : IResourceEditorOptions
     
     [Option('a', "all", SetName="all", HelpText="List all resources")]
     public bool AllFlag { get; set; }
+    
+    [Option('s', "namespace", HelpText="Filter by namespace")]
+    public string? Namespace { get; set; }
+    
+    [Option('n', "name", HelpText="Filter by name")]
+    public string? Name { get; set; }
 }

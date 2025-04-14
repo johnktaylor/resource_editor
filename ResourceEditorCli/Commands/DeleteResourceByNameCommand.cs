@@ -38,7 +38,7 @@ public class DeleteResourceByNameCommand : ResourceEditorCommand
             type = "Text";
         }
 
-        var setDb = GetSetDb();
+        var setDb = ResourceEditorConfiguration.GetSetDb().ResultMessage;
         if (setDb == null)
         {
             var results = new ResourceEditorResult()

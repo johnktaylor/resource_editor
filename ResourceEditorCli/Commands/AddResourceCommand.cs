@@ -30,7 +30,7 @@ public class AddResourceCommand : ResourceEditorCommand
             return results;
         }
         
-        var setDb = GetSetDb();
+        var setDb = ResourceEditorConfiguration.GetSetDb().ResultMessage;
         if (setDb == null)
         {
             var results = new ResourceEditorResult()
@@ -49,12 +49,31 @@ public class AddResourceCommand : ResourceEditorCommand
         {
             if (File.Exists(opts.ResourceFileName))
             {
-                var binary = context.Add(new BlobResource()
-                {
-                    Value = File.ReadAllBytes(opts.ResourceFileName),
-                });
+                var resourceHeaders = context.Set<ResourceHeader>()
+                    .Select(rh => new
+                    {
+                        rh.ResourceNamespace,
+                        rh.ResourceName,
+                    }).ToList();
 
-                resourceGuid = binary.Entity.Id;
+                if (!resourceHeaders.Any(r => r.ResourceName == opts.ResourceName &&
+                                              r.ResourceNamespace == opts.ResourceNameSpace))
+                {
+                    var binary = context.Add(new BlobResource()
+                    {
+                        Value = File.ReadAllBytes(opts.ResourceFileName),
+                    });
+
+                    resourceGuid = binary.Entity.Id;
+                }
+                else
+                {
+                    return new ResourceEditorResult()
+                    {
+                        ExitCode = 1,
+                        ResultMessage = "Resource already exists in resource file."
+                    };
+                }
             }
             else
             {
@@ -69,12 +88,31 @@ public class AddResourceCommand : ResourceEditorCommand
         {
             if (File.Exists(opts.ResourceFileName))
             {
-                var text = context.Add(new TextResource()
-                {
-                    Value = File.ReadAllText(opts.ResourceFileName),
-                });
+                var resourceHeaders = context.Set<ResourceHeader>()
+                    .Select(rh => new
+                    {
+                        rh.ResourceNamespace,
+                        rh.ResourceName,
+                    }).ToList();
 
-                resourceGuid = text.Entity.Id;
+                if (!resourceHeaders.Any(r => r.ResourceName == opts.ResourceName &&
+                                              r.ResourceNamespace == opts.ResourceNameSpace))
+                {
+                    var text = context.Add(new TextResource()
+                    {
+                        Value = File.ReadAllText(opts.ResourceFileName),
+                    });
+
+                    resourceGuid = text.Entity.Id;
+                }
+                else
+                {
+                    return new ResourceEditorResult()
+                    {
+                        ExitCode = 1,
+                        ResultMessage = "Resource already exists in resource file."
+                    };
+                }
             }
             else
             {
