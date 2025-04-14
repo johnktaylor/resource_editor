@@ -32,7 +32,6 @@ public class CreateDbCommand : ResourceEditorCommand
         {
             context.DbFilePath = opts.Path;
             context.Database.EnsureCreated();
-            Console.WriteLine($"Created file {opts.Path}.");
 
             int ordinal = 0;
             
@@ -68,6 +67,7 @@ public class CreateDbCommand : ResourceEditorCommand
             return new ResourceEditorResult()
             {
                 ExitCode = 0,
+                ResultMessage = $"Created file {opts.Path}."
             };
         }
     }
